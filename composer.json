@@ -1,0 +1,12 @@
+{
+    "name": "sylius-labs/doctrine-migrations-extra-bundle",
+    "type": "bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kamil Kokot",
+            "email": "kamil@kokot.me"
+        }
+    ],
+    "require": {}
+}
