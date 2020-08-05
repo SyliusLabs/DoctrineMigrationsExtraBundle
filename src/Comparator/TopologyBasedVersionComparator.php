@@ -21,10 +21,13 @@ final class TopologyBasedVersionComparator implements Comparator
      */
     private $dependencies;
 
+    /**
+     * @psalm-param array<string, list<string>> $packages
+     */
     public function __construct(array $packages)
     {
         $this->defaultSorter = new AlphabeticalComparator();
-        $this->dependencies = $this->buildDependencies($packages);
+        $this->dependencies = $this->buildDependencies(array_merge($packages, ['' => []]));
     }
 
     public function compare(Version $a, Version $b): int
@@ -39,9 +42,14 @@ final class TopologyBasedVersionComparator implements Comparator
     {
         $version = (string) $version;
 
-        return substr($version, 0, strrpos($version, '\\'));
+        return substr($version, 0, strrpos($version, '\\') ?: 0);
     }
 
+    /**
+     * @psalm-param array<string, list<string>> $packages
+     *
+     * @psalm-return array<string, int>
+     */
     private function buildDependencies(array $packages): array
     {
         $sorter = new ArraySort();
@@ -50,6 +58,9 @@ final class TopologyBasedVersionComparator implements Comparator
             $sorter->add($subject, $dependencies);
         }
 
-        return array_flip($sorter->sort());
+        /** @psalm-var array<int, string> $sorted */
+        $sorted = $sorter->sort();
+
+        return array_flip($sorted);
     }
 }
