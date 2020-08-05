@@ -5,13 +5,13 @@ dist: bionic
 language: php
 
 php:
-    - '7.3'
     - '7.4'
+    - '7.3'
 
 env:
-    - SYMFONY_VERSION=4.4.*
-    - SYMFONY_VERSION=5.0.*
     - SYMFONY_VERSION=5.1.*
+    - SYMFONY_VERSION=5.0.*
+    - SYMFONY_VERSION=4.4.*
 
 cache:
     directories:
@@ -26,4 +26,5 @@ install:
 
 script:
     - vendor/bin/phpunit
+    - phpdbg -qrr vendor/bin/infection --min-msi=100
 
