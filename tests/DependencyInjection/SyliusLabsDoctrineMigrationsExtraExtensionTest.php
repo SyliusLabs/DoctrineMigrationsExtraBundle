@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\SyliusLabs\DoctrineMigrationsExtraBundle\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
-use SyliusLabs\DoctrineMigrationsExtraBundle\Comparator\TopologyBasedVersionComparator;
+use SyliusLabs\DoctrineMigrationsExtraBundle\Comparator\TopologicalVersionComparator;
 use SyliusLabs\DoctrineMigrationsExtraBundle\DependencyInjection\SyliusLabsDoctrineMigrationsExtraExtension;
 
 final class SyliusLabsDoctrineMigrationsExtraExtensionTest extends AbstractExtensionTestCase
@@ -16,7 +16,7 @@ final class SyliusLabsDoctrineMigrationsExtraExtensionTest extends AbstractExten
         $this->load(['migrations' => ['Name\\Space\\' => []]]);
 
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            TopologyBasedVersionComparator::class,
+            TopologicalVersionComparator::class,
             0,
             ['Name\\Space\\' => []]
         );
