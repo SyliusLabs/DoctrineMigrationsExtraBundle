@@ -1,0 +1,39 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tests\SyliusLabs\DoctrineMigrationsExtraBundle\Factory;
+
+use Doctrine\DBAL\Connection;
+use Doctrine\Migrations\Version\MigrationFactory;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
+use SyliusLabs\DoctrineMigrationsExtraBundle\Factory\ContainerAwareVersionFactory;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Tests\SyliusLabs\DoctrineMigrationsExtraBundle\Fixture\ContainerAwareMigration;
+
+final class ContainerAwareVersionFactoryTest extends TestCase
+{
+    /** @test */
+    public function migrations_implementing_container_aware_interface_are_injected_with_container(): void
+    {
+        // Arrange
+        $decoratedFactory = $this->createMock(MigrationFactory::class);
+        $container = $this->createMock(ContainerInterface::class);
+
+        $factory = new ContainerAwareVersionFactory($decoratedFactory, $container);
+
+        $decoratedFactory->method('createVersion')->willReturn(new ContainerAwareMigration(
+            $this->createMock(Connection::class),
+            $this->createMock(LoggerInterface::class)
+        ));
+
+        // Act
+        $migration = $factory->createVersion('Some\\Class');
+
+        // Assert
+        Assert::assertInstanceOf(ContainerAwareMigration::class, $migration);
+        Assert::assertInstanceOf(ContainerInterface::class, $migration->getContainer());
+    }
+}

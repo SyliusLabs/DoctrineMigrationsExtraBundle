@@ -5,8 +5,32 @@
     "authors": [
         {
             "name": "Kamil Kokot",
-            "email": "kamil@kokot.me"
+            "email": "kamil@kokot.me",
+            "homepage": "https://kamilkokot.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^7.3",
+
+        "doctrine/doctrine-migrations-bundle": "^3.0",
+        "doctrine/migrations": "^3.0",
+        "marcj/topsort": "^1.1",
+        "symfony/framework-bundle": "^4.4|^5.0"
+    },
+    "require-dev": {
+        "matthiasnoback/symfony-config-test": "^4.2",
+        "matthiasnoback/symfony-dependency-injection-test": "^4.1",
+        "phpunit/phpunit": "^9.2",
+        "infection/infection": "^0.16.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "SyliusLabs\\DoctrineMigrationsExtraBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\SyliusLabs\\DoctrineMigrationsExtraBundle\\": "tests/"
+        }
+    }
 }

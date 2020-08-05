@@ -1,0 +1,29 @@
+os: linux
+
+dist: bionic
+
+language: php
+
+php:
+    - '7.3'
+    - '7.4'
+
+env:
+    - SYMFONY_VERSION=4.4.*
+    - SYMFONY_VERSION=5.0.*
+    - SYMFONY_VERSION=5.1.*
+
+cache:
+    directories:
+        - ~/.composer/cache/files
+
+before_install:
+    - phpenv config-rm xdebug.ini || true
+
+install:
+    - composer require symfony/framework-bundle:${SYMFONY_VERSION} --no-update --no-scripts --prefer-dist
+    - composer update --prefer-dist
+
+script:
+    - vendor/bin/phpunit
+
