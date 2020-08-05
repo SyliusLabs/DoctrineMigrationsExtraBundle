@@ -21,7 +21,8 @@
         "matthiasnoback/symfony-config-test": "^4.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
         "phpunit/phpunit": "^9.2",
-        "infection/infection": "^0.16.4"
+        "infection/infection": "^0.16.4",
+        "vimeo/psalm": "^3.13"
     },
     "autoload": {
         "psr-4": {

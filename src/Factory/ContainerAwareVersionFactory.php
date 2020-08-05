@@ -23,9 +23,6 @@ final class ContainerAwareVersionFactory implements MigrationFactory
         $this->container = $container;
     }
 
-    /**
-     * @psalm-param class-string $migrationClassName
-     */
     public function createVersion(string $migrationClassName): AbstractMigration
     {
         $instance = $this->migrationFactory->createVersion($migrationClassName);

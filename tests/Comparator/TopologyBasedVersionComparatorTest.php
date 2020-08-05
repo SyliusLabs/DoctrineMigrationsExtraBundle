@@ -22,8 +22,8 @@ final class TopologyBasedVersionComparatorTest extends TestCase
 
         $this->assertSorting(
             $comparator,
-            ['Core\\Version1', 'Core\\Version2', 'Addon\\Version1'],
-            ['Core\\Version2', 'Addon\\Version1', 'Core\\Version1']
+            ['Core\\Version1', 'Core\\Version2', 'Addon\\Version1', 'Version1'],
+            ['Core\\Version2', 'Version1', 'Addon\\Version1', 'Core\\Version1']
         );
     }
 
