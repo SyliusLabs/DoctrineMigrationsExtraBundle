@@ -4,9 +4,7 @@
     <services>
         <service id="SyliusLabs\DoctrineMigrationsExtraBundle\Factory\ContainerAwareVersionFactory">
             <argument type="service">
-                <service class="Doctrine\Migrations\Version\MigrationFactory">
-                    <factory service="doctrine.migrations.dependency_factory" method="getMigrationFactory" />
-                </service>
+                <service class="Doctrine\Migrations\Version\DbalMigrationFactory" />
             </argument>
             <argument type="service" id="service_container" />
         </service>
