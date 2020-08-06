@@ -40,8 +40,8 @@ final class ConfigurationTest extends TestCase
     public function migrations_list_includes_an_empty_namespace(): void
     {
         $this->assertProcessedConfigurationEquals(
-            [['migrations' => ['Name\\Space\\' => []]]],
-            ['migrations' => ['Name\\Space\\' => []]]
+            [['migrations' => ['Name\\Space' => []]]],
+            ['migrations' => ['Name\\Space' => []]]
         );
     }
 
@@ -49,8 +49,8 @@ final class ConfigurationTest extends TestCase
     public function migrations_list_includes_an_empty_namespace_as_null(): void
     {
         $this->assertProcessedConfigurationEquals(
-            [['migrations' => ['Name\\Space\\' => null]]],
-            ['migrations' => ['Name\\Space\\' => []]]
+            [['migrations' => ['Name\\Space' => null]]],
+            ['migrations' => ['Name\\Space' => []]]
         );
     }
 
@@ -58,8 +58,8 @@ final class ConfigurationTest extends TestCase
     public function migrations_list_includes_namespaces_with_required_namespaces(): void
     {
         $this->assertProcessedConfigurationEquals(
-            [['migrations' => ['Name\\Space\\' => ['Another\\Name\\Space\\']]]],
-            ['migrations' => ['Name\\Space\\' => ['Another\\Name\\Space\\']]]
+            [['migrations' => ['Name\\Space' => ['Another\\Name\\Space']]]],
+            ['migrations' => ['Name\\Space' => ['Another\\Name\\Space']]]
         );
     }
 }
