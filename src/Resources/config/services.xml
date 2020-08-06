@@ -11,7 +11,7 @@
             <argument type="service" id="service_container" />
         </service>
 
-        <service id="SyliusLabs\DoctrineMigrationsExtraBundle\Comparator\TopologyBasedVersionComparator">
+        <service id="SyliusLabs\DoctrineMigrationsExtraBundle\Comparator\TopologicalVersionComparator">
             <argument type="collection" />
         </service>
     </services>

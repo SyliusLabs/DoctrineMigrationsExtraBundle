@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace SyliusLabs\DoctrineMigrationsExtraBundle\Comparator;
 
-use Doctrine\Migrations\Version\AlphabeticalComparator;
-use Doctrine\Migrations\Version\Comparator;
-use Doctrine\Migrations\Version\Version;
 use MJS\TopSort\Implementations\ArraySort;
 
-final class TopologyBasedVersionComparator implements Comparator
+final class TopologicalMap
 {
-    /** @var Comparator */
-    private $defaultSorter;
+    /**
+     * @psalm-var array<string, list<string>>
+     *
+     * @var array[]
+     */
+    private $packages;
 
     /**
      * @psalm-var array<string, int>
@@ -26,23 +27,18 @@ final class TopologyBasedVersionComparator implements Comparator
      */
     public function __construct(array $packages)
     {
-        $this->defaultSorter = new AlphabeticalComparator();
-        $this->dependencies = $this->buildDependencies(array_merge($packages, ['' => []]));
+        $this->packages = $packages;
+        $this->dependencies = $this->buildDependencies($this->packages);
     }
 
-    public function compare(Version $a, Version $b): int
+    public function getPriority(string $package): int
     {
-        $prefixA = $this->getNamespacePrefix($a);
-        $prefixB = $this->getNamespacePrefix($b);
+        if (!array_key_exists($package, $this->dependencies)) {
+            $this->packages[$package] = [];
+            $this->dependencies = $this->buildDependencies($this->packages);
+        }
 
-        return $this->dependencies[$prefixA] <=> $this->dependencies[$prefixB] ?: $this->defaultSorter->compare($a, $b);
-    }
-
-    private function getNamespacePrefix(Version $version): string
-    {
-        $version = (string) $version;
-
-        return substr($version, 0, strrpos($version, '\\') ?: 0);
+        return $this->dependencies[$package];
     }
 
     /**

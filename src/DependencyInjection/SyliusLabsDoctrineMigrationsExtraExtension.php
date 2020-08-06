@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SyliusLabs\DoctrineMigrationsExtraBundle\DependencyInjection;
 
-use SyliusLabs\DoctrineMigrationsExtraBundle\Comparator\TopologyBasedVersionComparator;
+use SyliusLabs\DoctrineMigrationsExtraBundle\Comparator\TopologicalVersionComparator;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -20,7 +20,7 @@ final class SyliusLabsDoctrineMigrationsExtraExtension extends Extension
 
         $loader->load('services.xml');
 
-        $container->getDefinition(TopologyBasedVersionComparator::class)->setArgument(0, $config['migrations']);
+        $container->getDefinition(TopologicalVersionComparator::class)->setArgument(0, $config['migrations']);
     }
 
     public function getConfiguration(array $config, ContainerBuilder $container): ConfigurationInterface
