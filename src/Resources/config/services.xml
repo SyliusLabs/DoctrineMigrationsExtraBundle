@@ -5,7 +5,11 @@
         <service id="SyliusLabs\DoctrineMigrationsExtraBundle\Factory\ContainerAwareVersionFactory">
             <argument type="service">
                 <service class="Doctrine\Migrations\Version\DbalMigrationFactory">
-                    <argument type="service" id="doctrine.dbal.connection" />
+                    <argument type="service">
+                        <service class="Doctrine\DBAL\Connection">
+                            <factory service="doctrine.orm.entity_manager" method="getConnection" />
+                        </service>
+                    </argument>
                     <argument type="service" id="logger" />
                 </service>
             </argument>
