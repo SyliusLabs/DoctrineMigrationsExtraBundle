@@ -93,12 +93,12 @@ final class AcmeExtension extends Extension implements PrependExtensionInterface
 
 Cause this bundle will dynamically change the configuration of Doctrine Migrations, you may need to specify your own namespace like:
 ```yaml
-# config/doctrine_migrations.yaml
+# config/packages/doctrine_migrations.yaml
 doctrine_migrations:
   migrations_paths:
     'App\Migrations': "%kernel.project_dir%/src/Migrations"
 
-# config/sylius_labs_doctrine_migrations_extra.yaml
+# config/packages/sylius_labs_doctrine_migrations_extra.yaml
 sylius_labs_doctrine_migrations_extra:
   migrations:
     'App\Migrations': ~
