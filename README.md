@@ -89,6 +89,25 @@ final class AcmeExtension extends Extension implements PrependExtensionInterface
 }
 ```
 
+## Generating new diff
+
+Cause this bundle will dynamically change the configuration of Doctrine Migrations, you may need to specify your own namespace like:
+```yaml
+# config/packages/doctrine_migrations.yaml
+doctrine_migrations:
+  migrations_paths:
+    'App\Migrations': "%kernel.project_dir%/src/Migrations"
+
+# config/packages/sylius_labs_doctrine_migrations_extra.yaml
+sylius_labs_doctrine_migrations_extra:
+  migrations:
+    'App\Migrations': ~
+```
+After that you will be able to generate again your own migration by calling:
+```bash
+bin/console doctrine:migrations:diff --namespace=App\\Migrations
+```
+
 ## Versioning and release cycle
 
 This package follows [semantic versioning](https://semver.org/). 
