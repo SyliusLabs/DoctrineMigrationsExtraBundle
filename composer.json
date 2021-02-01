@@ -10,19 +10,18 @@
         }
     ],
     "require": {
-        "php": "^7.3",
-
+        "php": "^7.3 || ^8.0",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/migrations": "^3.0",
         "marcj/topsort": "^1.1",
-        "symfony/framework-bundle": "^4.4|^5.0"
+        "symfony/framework-bundle": "^4.4 || ^5.2"
     },
     "require-dev": {
+        "infection/infection": "^0.21.0",
         "matthiasnoback/symfony-config-test": "^4.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
-        "phpunit/phpunit": "^9.2",
-        "infection/infection": "^0.16.4",
-        "vimeo/psalm": "^3.13"
+        "phpunit/phpunit": "^9.5",
+        "vimeo/psalm": "4.4.1"
     },
     "autoload": {
         "psr-4": {
