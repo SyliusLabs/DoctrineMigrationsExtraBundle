@@ -24,6 +24,11 @@ final class TopologicalVersionComparator implements Comparator
         $this->defaultSorter = new AlphabeticalComparator();
         $this->map = new TopologicalMap($packages);
     }
+    
+    public function __invoke(Version $a, Version $b): int
+    {
+        return $this->compare($a, $b);
+    }
 
     public function compare(Version $a, Version $b): int
     {
