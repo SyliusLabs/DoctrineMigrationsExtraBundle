@@ -78,6 +78,32 @@ final class TopologicalVersionComparatorTest extends TestCase
         );
     }
 
+    /** @test */
+    public function it_can_be_called_as_a_function_and_does_compare(): void
+    {
+        // don't do this in real life, bad practice, but for testing it is ok
+        // I want to use the existing test function and decided to create an anonymous class
+        // that decorates the TopologicalVersionComparator except that it calls it as invokable every time
+        // you call compare()
+        $comparatorThatInvokesInsteadOfCompares = new Class implements Comparator{
+            protected Comparator $inner;
+            public function __construct() {
+                $this->inner = new TopologicalVersionComparator([]);
+            }
+
+            public function compare(Version $a, Version $b): int
+            {
+                return $this->inner->__invoke($a, $b);
+            }
+        };
+
+        $this->assertSorting(
+            $comparatorThatInvokesInsteadOfCompares,
+            ['Abc', 'Def', 'Ghi'],
+            ['Def', 'Ghi', 'Abc']
+        );
+    }
+
     /**
      * @param string[] $expectedVersions
      * @param string[] $actualVersions
