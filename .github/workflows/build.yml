@@ -23,8 +23,8 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                php: [7.4, 8.0]
-                symfony: [^4.4, ^5.2]
+                php: ["8.0"]
+                symfony: ["^5.4", "^6.0"]
 
         steps:
             -   uses: actions/checkout@v2
@@ -51,7 +51,7 @@ jobs:
             -   name: Restrict Symfony version
                 if: matrix.symfony != ''
                 run: |
-                    composer global require --no-progress --no-scripts --no-plugins "symfony/flex:^1.10"
+                    composer global require --no-progress --no-scripts --no-plugins "symfony/flex:^1.17"
                     composer config extra.symfony.require "${{ matrix.symfony }}"
 
             -   name: Install dependencies
