@@ -23,6 +23,12 @@
         "phpunit/phpunit": "^9.5",
         "vimeo/psalm": "^4.23"
     },
+    "config": {
+        "allow-plugins": {
+            "symfony/flex": true,
+            "infection/extension-installer": true
+        }
+    },
     "autoload": {
         "psr-4": {
             "SyliusLabs\\DoctrineMigrationsExtraBundle\\": "src/"
