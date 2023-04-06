@@ -22,6 +22,11 @@ final class ContainerAwareVersionFactory implements MigrationFactory
         $this->migrationFactory = $migrationFactory;
         $this->container = $container;
     }
+    
+    public function __invoke(string $migrationClassName): AbstractMigration
+    {
+        return $this->createVersion($migrationClassName);
+    }
 
     public function createVersion(string $migrationClassName): AbstractMigration
     {

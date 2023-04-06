@@ -59,4 +59,26 @@ final class ContainerAwareVersionFactoryTest extends TestCase
         Assert::assertInstanceOf(NotContainerAwareMigration::class, $migration);
         Assert::assertNull($migration->getContainer());
     }
+
+    /** @test */
+    public function it_can_be_called_as_a_function_and_does_create_version(): void
+    {
+        // Arrange
+        $decoratedFactory = $this->createMock(MigrationFactory::class);
+        $container = $this->createMock(ContainerInterface::class);
+
+        $factory = new ContainerAwareVersionFactory($decoratedFactory, $container);
+
+        $decoratedFactory->method('createVersion')->willReturn(new NotContainerAwareMigration(
+            $this->createMock(Connection::class),
+            $this->createMock(LoggerInterface::class)
+        ));
+
+        // Act
+        $migration = $factory->__invoke('Some\\Class');
+
+        // Assert
+        Assert::assertInstanceOf(NotContainerAwareMigration::class, $migration);
+        Assert::assertNull($migration->getContainer());
+    }
 }
