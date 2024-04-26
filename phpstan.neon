@@ -1,5 +1,12 @@
 parameters:
-	level: 6
-	paths:
-		- src
-		- tests
+    level: 6
+    paths:
+        - src
+        - tests
+
+    excludePaths:
+        - tests/Fixture/ContainerAwareMigration
+
+    ignoreErrors:
+        - '/Call to method setContainer\(\) on an unknown class Symfony\\Component\\DependencyInjection\\ContainerAwareInterface./'
+        - '/Class Symfony\\Component\\DependencyInjection\\ContainerAwareInterface not found./'
