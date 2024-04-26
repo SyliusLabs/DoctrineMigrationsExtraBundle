@@ -46,10 +46,6 @@ final class ContainerAwareVersionFactoryTest extends TestCase
     /** @test */
     public function migrations_not_implementing_container_aware_interface_are_not_injected_with_container(): void
     {
-        if (Kernel::MAJOR_VERSION >= 7) {
-            $this->markTestSkipped();
-        }
-
         // Arrange
         $decoratedFactory = $this->createMock(MigrationFactory::class);
         $container = $this->createMock(ContainerInterface::class);

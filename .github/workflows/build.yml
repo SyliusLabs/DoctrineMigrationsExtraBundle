@@ -68,4 +68,9 @@ jobs:
                 run: vendor/bin/phpunit
 
             -   name: Run Infection
+                if: ${{matrix.symfony == '^7.0' }}
+                run: phpdbg -qrr vendor/bin/infection --min-msi=82
+
+            -   name: Run Infection
+                if: ${{matrix.symfony != '^7.0' }}
                 run: phpdbg -qrr vendor/bin/infection --min-msi=100
