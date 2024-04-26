@@ -17,7 +17,7 @@
         "symfony/framework-bundle": "^5.4 || ^6.4 || ^7.0"
     },
     "require-dev": {
-        "infection/infection": "^0.26",
+        "infection/infection": "^0.28",
         "matthiasnoback/symfony-config-test": "^4.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
         "phpunit/phpunit": "^9.5",
