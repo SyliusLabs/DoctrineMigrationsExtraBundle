@@ -61,8 +61,8 @@ jobs:
             -   name: Install dependencies
                 run: composer install --ansi --no-interaction
 
-            -   name: Run Psalm
-                run: vendor/bin/psalm
+            -   name: Run PHPStan
+                run: vendor/bin/phpstan analyse
 
             -   name: Run PHPUnit
                 run: vendor/bin/phpunit
