@@ -18,8 +18,8 @@
     },
     "require-dev": {
         "infection/infection": "^0.28",
-        "matthiasnoback/symfony-config-test": "^4.2",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.1",
+        "matthiasnoback/symfony-config-test": "^5.1",
+        "matthiasnoback/symfony-dependency-injection-test": "^5.1",
         "phpunit/phpunit": "^9.5",
         "vimeo/psalm": "^4.23"
     },
