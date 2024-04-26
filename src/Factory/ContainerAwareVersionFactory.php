@@ -27,7 +27,10 @@ final class ContainerAwareVersionFactory implements MigrationFactory
     {
         $instance = $this->migrationFactory->createVersion($migrationClassName);
 
-        if ($instance instanceof ContainerAwareInterface) {
+        if (
+            interface_exists(ContainerAwareInterface::class)
+            && $instance instanceof ContainerAwareInterface
+        ) {
             $instance->setContainer($this->container);
         }
 

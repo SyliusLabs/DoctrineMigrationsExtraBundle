@@ -6,7 +6,5 @@ parameters:
 
     excludePaths:
         - tests/Fixture/ContainerAwareMigration
+        - tests/Factory/ContainerAwareVersionFactoryTest.php
 
-    ignoreErrors:
-        - '/Call to method setContainer\(\) on an unknown class Symfony\\Component\\DependencyInjection\\ContainerAwareInterface./'
-        - '/Class Symfony\\Component\\DependencyInjection\\ContainerAwareInterface not found./'
