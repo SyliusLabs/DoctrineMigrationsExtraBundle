@@ -13,6 +13,11 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 final class SyliusLabsDoctrineMigrationsExtraExtension extends Extension
 {
+    /**
+     * @param array<string, mixed> $configs
+     *
+     * @throws \Exception
+     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
@@ -23,6 +28,9 @@ final class SyliusLabsDoctrineMigrationsExtraExtension extends Extension
         $container->getDefinition(TopologicalVersionComparator::class)->setArgument(0, $config['migrations']);
     }
 
+    /**
+     * @param array<string, mixed> $config
+     */
     public function getConfiguration(array $config, ContainerBuilder $container): ConfigurationInterface
     {
         return new Configuration();

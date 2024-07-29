@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use SyliusLabs\DoctrineMigrationsExtraBundle\Factory\ContainerAwareVersionFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\Kernel;
 use Tests\SyliusLabs\DoctrineMigrationsExtraBundle\Fixture\ContainerAwareMigration;
 use Tests\SyliusLabs\DoctrineMigrationsExtraBundle\Fixture\NotContainerAwareMigration;
 
@@ -19,6 +20,10 @@ final class ContainerAwareVersionFactoryTest extends TestCase
     /** @test */
     public function migrations_implementing_container_aware_interface_are_injected_with_container(): void
     {
+        if (Kernel::MAJOR_VERSION >= 7) {
+            $this->markTestSkipped();
+        }
+
         // Arrange
         $decoratedFactory = $this->createMock(MigrationFactory::class);
         $container = $this->createMock(ContainerInterface::class);
