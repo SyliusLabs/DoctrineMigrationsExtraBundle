@@ -14,7 +14,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/migrations": "^3.0",
         "marcj/topsort": "^1.1",
-        "symfony/framework-bundle": "^5.4 || ^6.4 || ^7.0"
+        "symfony/framework-bundle": "^5.4 || ^6.4 || ^7.4 || ^8.0"
     },
     "require-dev": {
         "infection/infection": "^0.28",
