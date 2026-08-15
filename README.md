@@ -36,6 +36,19 @@ doctrine_migrations:
 
 ## Usage
 
+### Service Migrations (Symfony 7+)
+
+To use migrations as services (allowing constructor dependency injection), register your migrations with the `doctrine_migrations.migration` tag:
+
+```yaml
+# config/services.yaml
+services:
+    App\Migrations\Version20260101:
+        tags: ['doctrine_migrations.migration']
+```
+
+The bundle's `ServiceLoaderMigrationFactory` will automatically resolve these services. If a migration is not registered as a service, it will fall back to the default behavior (including support for `ContainerAwareInterface` in older Symfony versions).
+
 ### In an application
 
 In order to define the topology of migrations, configure it in `config/packages/sylius_labs_doctrine_migrations_extra.yaml`:
